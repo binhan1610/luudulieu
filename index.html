@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      My to do list
+      <input id="inputwork" type="text" />
+      <input id="addwork" type="button" value="Add" />
+    </form>
+    <ul></ul>
+    <button id="save">save</button>
+    <script>
+      const ipw = document.querySelector("#inputwork");
+      const aw = document.querySelector("#addwork");
+      const ul = document.querySelector("ul");
+      const save = document.querySelector("#save");
+      const addwork = () => {
+        const li = document.createElement("li");
+        li.textContent = ipw.value;
+        ul.appendChild(li);
+      };
+      aw.addEventListener("click", addwork);
+      const data = [];
+      const savedata = () => {
+        for (let i = 0; i < ul.children.length; i++) {
+          const value = {
+            "cong viec": ul.children[i].innerHTML,
+          };
+          data.push(value);
+        }
+        localStorage.setItem("todo", JSON.stringify(data));
+      };
+      save.addEventListener("click", savedata);
+    </script>
+  </body>
+</html>
